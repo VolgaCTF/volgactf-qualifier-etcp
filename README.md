@@ -25,7 +25,6 @@ This request may be made by the TQMS to check TQTS availability status.
 ```
 GET /check
 Host: task.checker.quals.themis-project.com
-Content-Type: application/json
 ```
 
 *Response*
