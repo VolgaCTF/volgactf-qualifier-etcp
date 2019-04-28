@@ -1,30 +1,30 @@
-# Themis Quals Checker Protocol (TQCP)
-Themis Quals is a contest checking system for CTF contests (jeopardy). This document introduces a protocol to check an answer to a task.
+# VolgaCTF Qualifier External Task Checker Protocol  (ETCP)
+VolgaCTF Qualifier is a checking system for CTF contests (jeopardy). This document introduces a protocol to check an answer to a task.
 
 ## Call for a change
 The current system has only one way to specify a correct answer / a limited number of correct answers to a task. Nonetheless, some types of problems (e.g. cryptography) may be solved in a variety of ways, which may result in a great many valid answers for a single task.
 
-## A new protocol (proposal)
-A Themis Quals task checker (TQTS) is a REST web service.
+## A new protocol
+An external task checker (ETC) is a REST web service.
 
-A TQTS runs on a public FQDN[:port]. For instance, the FQDN might look like `task.checker.quals.themis-project.com`.
+An ETC runs on a public FQDN[:port]. For instance, the FQDN might look like `task.checker.qualifier.volgactf.org`.
 
-A TQTS accepts requests from a Themis Quals master server (TQMS) and provides a response indicating whether a provided answer is correct or not.
+An ETC accepts requests from a VolgaCTF Qualifier master server (VQMS) and provides a response indicating whether a provided answer is correct or not.
 
 ### Authentication
-The TQMS makes use of [HTTP Basic Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) to authenticate itself to a TQTS. Additionaly, a TQTS may require of the TQMS to start a secure (HTTPS) connection. Last but not the least, a TQTS may accept connections only from a limited set of IP adresses.
+The VQMS makes use of [HTTP Basic Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) to authenticate itself to an ETC. Additionaly, an ETC may require that VQMS starts a secure (HTTPS) connection. Last but not the least, an ETC may accept connections only from a limited set of IP adresses.
 
-**Note.** The aforementioned measures may be implemented by a load-balancing server like Nginx. In a nutshell, a basic TQTS may lack authentication & security features at all.
+**Note.** The aforementioned measures may be implemented by a load-balancing server like Nginx. In a nutshell, a basic ETC may lack authentication & security features at all.
 
 ### Heartbeat
 
-This request may be made by the TQMS to check TQTS availability status.
+This request may be made by the VQMS to check an ETC availability status.
 
 *Request*
 
 ```
 GET /check
-Host: task.checker.quals.themis-project.com
+Host: task.checker.qualifier.volgactf.org
 ```
 
 *Response*
@@ -39,7 +39,7 @@ HTTP/1.1 204 No Content
 
 ```
 POST /check
-Host: task.checker.quals.themis-project.com
+Host: task.checker.qualifier.volgactf.org
 Content-Type: application/json
 
 {
@@ -61,7 +61,7 @@ Content-Type: application/json
 ```
 
 ### Web server process(es)
-There may be launched several instances (processes) of a TQTS. A process monitoring system (e.g. Supervisor) should provide a TQTS start script with the following environment variables:
+There may be launched several instances (processes) of an ETC. A process monitoring system (e.g. Supervisor) should provide an ETC start script with the following environment variables:
 - `HOST`
 - `PORT`
 - `INSTANCE`
@@ -78,4 +78,4 @@ To have a similar interface, it is suggested to put all scripts in `script` fold
 2. [Optional] `console` - CLI;  
 
 ## License
-MIT @ [Alexander Pyatkin](https://github.com/aspyatkin)
+MIT @ [VolgaCTF](https://github.com/VolgaCTF)
