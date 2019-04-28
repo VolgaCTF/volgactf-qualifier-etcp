@@ -1,5 +1,5 @@
 # VolgaCTF Qualifier External Task Checker Protocol  (ETCP)
-VolgaCTF Qualifier is a checking system for CTF contests (jeopardy). This document introduces a protocol to check an answer to a task.
+VolgaCTF Qualifier is a platform for task-based CTF competitions. This document introduces a protocol to check an answer to a task.
 
 ## Call for a change
 The current system has only one way to specify a correct answer / a limited number of correct answers to a task. Nonetheless, some types of problems (e.g. cryptography) may be solved in a variety of ways, which may result in a great many valid answers for a single task.
